@@ -10,24 +10,24 @@ for i in range(len(a)):
         index += 1
     else:
         if a[i] == "+":
-            operated2 = a.pop(index)
+            operated2 = stack_list.pop(index)
             index -= 1
-            operated1 = a.pop(index)
+            operated1 = stack_list.pop(index)
             index -= 1
-            a.append(operated1 + operated2)
+            stack_list.append(operated1 + operated2)
             index += 1
         elif a[i] == "-":
-            operated2 = a.pop(index)
+            operated2 = stack_list.pop(index)
             index -= 1
-            operated1 = a.pop(index)
+            operated1 = stack_list.pop(index)
             index -= 1
-            a.append(operated1 - operated2)
+            stack_list.append(operated1 - operated2)
             index += 1
         elif a[i] == "*":
-            operated2 = a.pop(index)
+            operated2 = stack_list.pop(index)
             index -= 1
-            operated1 = a.pop(index)
+            operated1 = stack_list.pop(index)
             index -= 1
-            a.append(operated1 * operated2)
+            stack_list.append(operated1 * operated2)
             index += 1
-print(a[index])
+print(stack_list[index])
