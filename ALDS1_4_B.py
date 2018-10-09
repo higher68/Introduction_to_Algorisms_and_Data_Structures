@@ -6,11 +6,11 @@ t = [int(_) for _ in input().split()]
 
 def Binary_Search(A, key):
     A_left = 0
-    A_right = n-1
+    A_right = n
     while A_left < A_right:
-        mid = (A_right-A_left) // 2
+        mid = (A_right+A_left) // 2
         if A[mid] < key:
-            A_left = mid
+            A_left = mid+1
         elif key < A[mid]:
             A_right = mid
         else:
