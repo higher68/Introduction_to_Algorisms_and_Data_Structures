@@ -15,18 +15,17 @@ def str_to_nume(word):
 def convert_type(word):
     return int(str_to_nume(word))
 
-
+sols = []
 n = int(input())
-m = 1234567890
+m = 111111111111
 h = [0 for i in range(m)]
-sol_list = []
-sol_count = 0
+# print("hoge")
 for i in range(n):
-    col = input()
+    col = input().split()
     if col[0] == "insert":
-        h[convert_type(col[1])] == 1
+        h[convert_type(col[1])] = 1
     else:
         if h[convert_type(col[1])] == 1:
-            print("Yes")
+            print("yes")
         else:
-            print("No")
+            print("no")
