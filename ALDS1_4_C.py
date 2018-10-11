@@ -1,3 +1,6 @@
+m = 104657
+
+
 def str_to_nume(word):
     ans = ""
     for _ in word:
@@ -15,10 +18,43 @@ def str_to_nume(word):
 def convert_type(word):
     return int(str_to_nume(word))
 
+
+def hash1(key):
+    return key % m
+
+
+def hash2(key):
+    '''hash1で衝突したとき用
+    '''
+    return 1 + key % (m-1)
+
+
+def find(str_key):
+    key = convert_type(str_key)
+    for i in range(m):
+        h = (hash1(key) + i + hash2(key)) % m
+        if H[h] == str_key:
+            return 1
+        elif len(H[h]) == 0:
+            return 0
+    return 0
+
+
+def insert(str_key):
+    key = convert_type(str_key)
+    for i in range(m):
+        h = (hash1(key) + i + hash2(key)) % m
+        if H[h] == str_key:
+            return 1
+        elif len(H[h]) == 0:
+            H[h] = str_key
+            return 0
+    return 0
+
+
 sols = []
 n = int(input())
-m = 111111111111
-h = [0 for i in range(m)]
+H = [0] * m
 # print("hoge")
 for i in range(n):
     col = input().split()
