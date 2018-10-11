@@ -1,4 +1,5 @@
 m = 104657
+H = [""] * m
 
 
 def str_to_nume(word):
@@ -54,14 +55,15 @@ def insert(str_key):
 
 sols = []
 n = int(input())
-H = [0] * m
 # print("hoge")
 for i in range(n):
     col = input().split()
     if col[0] == "insert":
-        h[convert_type(col[1])] = 1
+        insert(col[1])
     else:
-        if h[convert_type(col[1])] == 1:
-            print("yes")
+        if find(col[1]) == 1:
+            sols.append("yes")
         else:
-            print("no")
+            sols.append("no")
+for _ in sols:
+    print(_)
