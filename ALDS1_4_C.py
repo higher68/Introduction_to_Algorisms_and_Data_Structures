@@ -1,4 +1,4 @@
-m = 104657
+m = 1046527
 H = [""] * m
 
 
@@ -17,6 +17,8 @@ def str_to_nume(word):
 
 
 def convert_type(word):
+    # print("word", word)
+    # print("value", int(str_to_nume(word)))
     return int(str_to_nume(word))
 
 
@@ -33,7 +35,7 @@ def hash2(key):
 def find(str_key):
     key = convert_type(str_key)
     for i in range(m):
-        h = (hash1(key) + i + hash2(key)) % m
+        h = (hash1(key) + i * hash2(key)) % m
         if H[h] == str_key:
             return 1
         elif len(H[h]) == 0:
@@ -44,7 +46,7 @@ def find(str_key):
 def insert(str_key):
     key = convert_type(str_key)
     for i in range(m):
-        h = (hash1(key) + i + hash2(key)) % m
+        h = (hash1(key) + i * hash2(key)) % m
         if H[h] == str_key:
             return 1
         elif len(H[h]) == 0:
