@@ -1,6 +1,6 @@
 import math
 n = int(input())
-pi = math.acos(1)
+pi = math.acos(-1)
 th = pi/3
 
 
@@ -17,18 +17,18 @@ def koch(n, a, b):
         t = point((1*a.x+2*b.x)/3, (1*a.y+2*b.y)/3)
         u = point((t.x-s.x)*math.cos(th)
                   - (t.y-s.y)*math.sin(th)+s.x,
-                  (t.x-s.x)*math.sin(th)-(t.y-s.y)*math.cos(th)+s.y)
+                  (t.x-s.x)*math.sin(th)+(t.y-s.y)*math.cos(th)+s.y)
         koch(n-1, a, s)
-        print("{%.8f} {%.8f}".format(s.x, s.y))
+        print("{:.8f} {:.8f}".format(s.x, s.y))
         koch(n-1, s, u)
-        print("{%.8f} {%.8f}".format(u.x, u.y))
+        print("{:.8f} {:.8f}".format(u.x, u.y))
         koch(n-1, u, t)
-        print("{%.8f} {%.8f}".format(t.x, t.y))
+        print("{:.8f} {:.8f}".format(t.x, t.y))
         koch(n-1, t, b)
 
 
-a = point(0, 0)
-b = point(100, 0)
-print("{%.8f} {%.8f}".format(a.x, a.y))
+a = point(round(0, 8), round(0, 8))
+b = point(round(100, 8), round(0, 8))
+print("{:.8f} {:.8f}".format(a.x, a.y))
 koch(n, a, b)
-print("{%.8f} {%.8f}".format(b.x, b.y))
+print("{:.8f} {:.8f}".format(b.x, b.y))
