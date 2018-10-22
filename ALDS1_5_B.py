@@ -1,7 +1,7 @@
 
 SENTINEL = 2000000000
 n = int(input())
-S = [int(_) for _ in input().split()]
+A = [int(_) for _ in input().split()]
 MAX = 5000000
 L = []*(MAX/2+2)
 R = []*(MAX/2+2)
@@ -29,4 +29,14 @@ def merge(A, n, left, mid, right):
 
 
 def mergeSort(A, n, left, right):
-    
+    if left+1 < right:
+        mid = (left+right)/2
+        mergeSort(A, n, left, mid)
+        mergeSort(A, n, mid, right)
+        merge(A, n, left, mid, right)
+
+
+mergeSort(A, n, 0, n)
+
+print(A, sep=" ")
+print(cnt)
