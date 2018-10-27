@@ -28,25 +28,25 @@ def mergeSort(A, n, left, right):
 
 
 def partition(p, r):
-    x = A[r].value
+    x = B[r].value
     i = p - 1  # <xの右端
     for j in range(p, r):
-        if A[j].value <= x:
+        if B[j].value <= x:
             i += 1
-            A_tmp = A[i]
-            A[i] = A[j]
-            A[j] = A_tmp
-    t = A[i+1]
-    A[i+1] = A[r]
-    A[r] = t
+            B_tmp = B[i]
+            B[i] = B[j]
+            B[j] = B_tmp
+    t = B[i+1]
+    B[i+1] = B[r]
+    B[r] = t
     return i+1
 
 
-def quickSort(A, n, p, r):
+def quickSort(B, n, p, r):
     if p < r:
         q = partition(p, r)
-        quickSort(A, n, p, q-1)
-        quickSort(A, n, q+1, r)
+        quickSort(B, n, p, q-1)
+        quickSort(B, n, q+1, r)
 
 
 class new_list:
@@ -57,8 +57,8 @@ class new_list:
 
 n = int(input())
 S_tmp = [input().split() for i in range(n)]
-for i in range(n):
-    print(S_tmp[i])
+# for i in range(n):
+#     print(S_tmp[i])
 A = []
 B = []
 for i in range(n):
@@ -72,7 +72,7 @@ L = [''] * (n//2+2)
 R = [''] * (n//2+2)
 SENTINEL = 2000000000
 mergeSort(A, n, 0, n)
-quickSort(B, n, 0, n)
+quickSort(B, n, 0, n-1)
 
 for i in range(n):
     if A[i].suit != B[i].suit:
@@ -80,6 +80,6 @@ for i in range(n):
 if i == n-1:
     print("Stable")
 else:
-    print("Not Stable")
+    print("Not stable")
 for i in range(n):
-    print(A[i].value)
+    print(B[i].suit, B[i].value)
