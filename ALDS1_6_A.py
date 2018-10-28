@@ -9,11 +9,13 @@ for i in range(n):
 # カウントの和をとる
 for i in range(1, len_C):
     C[i] += C[i-1]
+# print("C", C)
 
-for i in range(n, -1, -1):
-    B[C[A[i]]] = A[i]
+for i in range(n-1, -1, -1):
+    # print(i, "A[i]", A[i], "C[A[i]]", C[A[i]])
+    B[C[A[i]]-1] = A[i]
     C[A[i]] -= 1
 
 for i in range(n-1):
-    print(B[i], end='')
+    print(B[i], end=' ')
 print(B[n-1])
