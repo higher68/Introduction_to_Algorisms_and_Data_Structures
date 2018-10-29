@@ -1,4 +1,4 @@
-#  ouput:parent, depth, type, 子の節点番号をそれぞれのノードに対してアウトプット
+# ouput:parent, depth, type, 子の節点番号をそれぞれのノードに対してアウトプット
 # pythonはnullじゃなくてNonce
 
 
@@ -14,7 +14,7 @@ def getDepth(u):
     depthを入力した番号のノードに対して求める
     '''
     d = 0
-    while Nodes[u].parent != None:
+    while Nodes[u].parent is not None:
         u = Nodes[u].parent
         d += 1
     return d
@@ -22,7 +22,7 @@ def getDepth(u):
 
 def printChild(u):
     c = Nodes[u].left
-    while c != NULL:
+    while c is not None:
         print(c)
         c = Nodes[c]
 
@@ -30,7 +30,7 @@ def printChild(u):
 def printNode(u):
     print("node {}:".formate(u))
     print("parent = {}, ".formate(Nodes[u].parent))
-    print("depth = {}, ".formate(D[u]))
+    print("depth = {}, ".formate(Depth[u]))
     if Nodes[u].parent is None:
         print("root, ")
     elif Nodes[u].left is None:
@@ -47,7 +47,7 @@ def printNode(u):
 
 
 def rec(u, p):
-    D[u] = p
+    Depth[u] = p
     if Node[u].right is not None:
         rec(Nodes[u].right, p)
     if Nodes[u].left is not None:
@@ -56,4 +56,10 @@ def rec(u, p):
 
 n = int(input())
 
-Nodes = [""] * n
+Nodes = [Node()] * n
+Depth = [""] * n
+for i in range(n):
+    q_in = [int(_) for _ in input().split()]
+    tmp_parent = q_in[1]
+    for j in range(2, len(q_in)):
+        
