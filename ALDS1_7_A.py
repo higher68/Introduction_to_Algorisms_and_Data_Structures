@@ -3,28 +3,32 @@
 
 
 class Node:
+    '''
+    leftは子ノード
+    rightは同depthのノード
+    '''
     def __init__(self, parent=None, left=None, right=None):
         self.parent = parent
         self.left = left
         self.right = right
 
 
-def getDepth(u):
-    '''
-    depthを入力した番号のノードに対して求める
-    '''
-    d = 0
-    while Nodes[u].parent is not None:
-        u = Nodes[u].parent
-        d += 1
-    return d
-
-
-def printChild(u):
-    c = Nodes[u].left
-    while c is not None:
-        print(c)
-        c = Nodes[c]
+# def getDepth(u):
+#     '''
+#     depthを入力した番号のノードに対して求める
+#     '''
+#     d = 0
+#     while Nodes[u].parent is not None:
+#         u = Nodes[u].parent
+#         d += 1
+#     return d
+#
+#
+# def printChild(u):
+#     c = Nodes[u].left
+#     while c is not None:
+#         print(c)
+#         c = Nodes[c]
 
 
 def printNode(u):
@@ -38,11 +42,11 @@ def printNode(u):
     else:
         print("internal node")
     print("[")
-    i = 0
     c = Nodes[u].left
     while c is not None:
         if i:
             print(", {}".format(c))
+        c = Nodes[c].right
     print("]")
 
 
@@ -60,6 +64,22 @@ Nodes = [Node()] * n
 Depth = [""] * n
 for i in range(n):
     q_in = [int(_) for _ in input().split()]
-    tmp_parent = q_in[1]
-    for j in range(2, len(q_in)):
-        
+    Node_number = q_in[0]
+    dimention = q_in[1]
+    for j in range(2, dimention):
+        if j == 0:
+            Nodes[Node_number].left = q_in[j+2]
+        else:
+            Nodes[Node_number].right = q_in[j+2]
+        Node_number = q_in[j+2]
+        Node[q_in[j+2]].parent = Node_number
+
+for i in range(n):
+    if Node[i].parent is None:
+        r = i
+        break
+
+rec(r, 0)
+
+for i in range(n):
+    printNode(i)
