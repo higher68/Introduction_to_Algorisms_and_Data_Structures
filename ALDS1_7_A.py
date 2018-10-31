@@ -59,23 +59,37 @@ def rec(u, p):
 
 
 n = int(input())
+print(n)
+
 
 Nodes = [Node()] * n
 Depth = [""] * n
+# for i in range(n):
+#     print(i, Nodes[i].parent, Nodes[i].left, Nodes[i].right)
+#     Nodes[i].parent, Nodes[i].left, Nodes[i].right = 1, 1, 1
+#     print(i, Nodes[i].parent, Nodes[i].left, Nodes[i].right)
+# exit()
 for i in range(n):
     q_in = [int(_) for _ in input().split()]
+    # print(q_in)
     Node_number = q_in[0]
     dimention = q_in[1]
-    for j in range(2, dimention):
-        if j == 0:
-            Nodes[Node_number].left = q_in[j+2]
-        else:
-            Nodes[Node_number].right = q_in[j+2]
-        Node_number = q_in[j+2]
-        Node[q_in[j+2]].parent = Node_number
-
+    # print(Node_number, dimention)
+    if dimention > 2:
+        for j in range(0, dimention):
+            # print('hogeo')
+            if j == 0:
+                Nodes[Node_number].left = q_in[j+2]
+            else:
+                Nodes[Node_number].right = q_in[j+2]
+            Node_number = q_in[j+2]
+            # print(type(Nodes[q_in[j+2]].parent))
+            Nodes[q_in[j+2]].parent = Node_number
+    # print("hoge")
+    # exit()
+# exit()
 for i in range(n):
-    if Node[i].parent is None:
+    if Nodes[i].parent is None:
         r = i
         break
 
