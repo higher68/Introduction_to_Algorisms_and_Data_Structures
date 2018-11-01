@@ -32,22 +32,25 @@ class Node:
 
 
 def printNode(u):
-    print("node {}:".formate(u))
-    print("parent = {}, ".formate(Nodes[u].parent))
-    print("depth = {}, ".formate(Depth[u]))
+    print("node {}:".format(u), end="")
+    print("parent = {}, ".format(Nodes[u].parent), end="")
+    print("depth = {}, ".format(Depth[u]), end="")
     if Nodes[u].parent is None:
-        print("root, ")
+        print("root, ", end="")
     elif Nodes[u].left is None:
-        print("leaf, ")
+        print("leaf, ", end="")
     else:
-        print("internal node")
-    print("[")
+        print("internal node", end="")
+    print("[", end="")
     c = Nodes[u].left
+    i = 0
     while c is not None:
-        if i:
-            print(", {}".format(c))
+        print(", {}".format(c), end="")
         c = Nodes[c].right
-    print("]")
+        i += 1
+        if i == 5:
+            exit()
+    print("]", end="")
 
 
 def rec(u, p):
@@ -84,16 +87,22 @@ for i in range(n):
                 Nodes[Node_number].right = q_in[j+2]
             Node_number = q_in[j+2]
             # print(type(Nodes[q_in[j+2]].parent))
-            Nodes[q_in[j+2]].parent = Node_number
+            if Node_number == 0:
+                Nodes[q_in[j+2]].parent = -1
+            else:
+                Nodes[q_in[j+2]].parent = Node_number
+    print("Nodes[0].left, Nodes[0].parent, Nodes[0].right", Nodes[0].left, Nodes[0].parent, Nodes[0].right)
+    exit()
     # print("hoge")
     # exit()
 # exit()
+r = -11
 for i in range(n):
     if Nodes[i].parent is None:
         r = i
         break
-
-rec(r, 0)
+if r != -11:
+    rec(r, 0)
 
 for i in range(n):
     printNode(i)
