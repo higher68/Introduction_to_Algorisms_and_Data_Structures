@@ -7,10 +7,10 @@ class Node:
     leftは子ノード
     rightは同depthのノード
     '''
-    def __init__(self, parent=None, left=None, right=None):
-        self.parent = parent
-        self.left = left
-        self.right = right
+    def __init__(self):
+        self.parent = None
+        self.left = None
+        self.right = None
 
 
 # def getDepth(u):
@@ -65,7 +65,9 @@ n = int(input())
 # print(n)
 
 
-Nodes = [Node()] * n
+Nodes = [[] for i in range(n)]
+for i in range(n):
+    Nodes[i] = Node()  # classを宣言するときは、()がないとおかしなことになる
 print(type(Nodes))
 print("len", len(Nodes))
 for i in range(n):
