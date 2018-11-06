@@ -35,7 +35,7 @@ def printNode(u):
     print("node {}:".format(u), end="")
     print("parent = {}, ".format(Nodes[u].parent), end="")
     print("depth = {}, ".format(Depth[u]), end="")
-    if Nodes[u].parent is None:
+    if Nodes[u].parent == -1:
         print("root, ", end="")
     elif Nodes[u].left is None:
         print("leaf, ", end="")
@@ -45,17 +45,20 @@ def printNode(u):
     c = Nodes[u].left
     i = 0
     while c is not None:
-        print(", {}".format(c), end="")
+        if i == 0:
+            print("{}".format(c), end="")
+        else:
+            print(", {}".format(c), end="")
         c = Nodes[c].right
         i += 1
         if i == 5:
             exit()
-    print("]", end="")
+    print("]")
 
 
 def rec(u, p):
     Depth[u] = p
-    if Node[u].right is not None:
+    if Nodes[u].right is not None:
         rec(Nodes[u].right, p)
     if Nodes[u].left is not None:
         rec(Nodes[u].right, p)
@@ -68,13 +71,13 @@ n = int(input())
 Nodes = [[] for i in range(n)]
 for i in range(n):
     Nodes[i] = Node()  # classを宣言するときは、()がないとおかしなことになる
-print(type(Nodes))
-print("len", len(Nodes))
-for i in range(n):
-    Nodes[i].left, Nodes[i].right, Nodes[i].parent = i, i, i
-for i in range(n):
-    print(i, Nodes[i].left, Nodes[i].right, Nodes[i].parent)
-exit()
+# print(type(Nodes))
+# print("len", len(Nodes))
+# for i in range(n):
+#     Nodes[i].left, Nodes[i].right, Nodes[i].parent = i, i, i
+# for i in range(n):
+#     print(i, Nodes[i].left, Nodes[i].right, Nodes[i].parent)
+# exit()
 Depth = [""] * n
 # for i in range(n):
 #     print(i, Nodes[i].parent, Nodes[i].left, Nodes[i].right)
@@ -89,7 +92,7 @@ for i in range(n):
     # print(Node_number, dimention)
     if dimention > 2:
         for j in range(0, dimention):
-            print(j, '-'*20)
+            # print(j, '-'*20)
             # print('hoge', j+2, q_in[j+2], Node_number)
             if j == 0:
                 Nodes[Node_number].left = q_in[j+2]
@@ -97,17 +100,17 @@ for i in range(n):
                 Nodes[Node_number].right = q_in[j+2]
             # print(type(Nodes[q_in[j+2]].parent))
             if Node_number == 0:
-                print("Node_number1", Node_number, q_in[j+2])
+                # print("Node_number1", Node_number, q_in[j+2])
                 Nodes[0].parent = -1
             else:
-                print("Node_number2", Node_number, q_in[j+2])
-                print("Nodes[q_in[j+2]].parent, Nodes[0].parent", Nodes[q_in[j+2]].parent, Nodes[0].parent)
+                # print("Node_number2", Node_number, q_in[j+2])
+                # print("Nodes[q_in[j+2]].parent, Nodes[0].parent", Nodes[q_in[j+2]].parent, Nodes[0].parent)
                 Nodes[q_in[j+2]].parent = Node_number
-            print("Nodes[0].left, Nodes[0].parent, Nodes[0].right", Nodes[0].left,
-            Nodes[0].parent, Nodes[0].right)
+            # print("Nodes[0].left, Nodes[0].parent, Nodes[0].right", Nodes[0].left,
+            # Nodes[0].parent, Nodes[0].right)
             Node_number = q_in[j+2]
     # print("Nodes[0].left, Nodes[0].parent, Nodes[0].right", Nodes[0].left, Nodes[0].parent, Nodes[0].right)
-    exit()
+    # exit()
     # print("hoge")
     # exit()
 # exit()
