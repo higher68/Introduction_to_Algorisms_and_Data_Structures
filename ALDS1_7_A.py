@@ -90,10 +90,11 @@ for i in range(n):
     Node_number = q_in[0]
     dimention = q_in[1]
     # print(Node_number, dimention)
-    if dimention > 2:
+    if dimention >= 2:
         for j in range(0, dimention):
             # print(j, '-'*20)
             # print('hoge', j+2, q_in[j+2], Node_number)
+            # print(Node_number)
             if j == 0:
                 Nodes[Node_number].left = q_in[j+2]
             else:
@@ -103,9 +104,10 @@ for i in range(n):
                 # print("Node_number1", Node_number, q_in[j+2])
                 Nodes[0].parent = -1
             else:
+                if j != 0:
                 # print("Node_number2", Node_number, q_in[j+2])
                 # print("Nodes[q_in[j+2]].parent, Nodes[0].parent", Nodes[q_in[j+2]].parent, Nodes[0].parent)
-                Nodes[q_in[j+2]].parent = Node_number
+                    Nodes[Node_number].parent = q_in[0]
             # print("Nodes[0].left, Nodes[0].parent, Nodes[0].right", Nodes[0].left,
             # Nodes[0].parent, Nodes[0].right)
             Node_number = q_in[j+2]
