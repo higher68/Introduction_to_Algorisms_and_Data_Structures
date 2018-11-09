@@ -32,7 +32,7 @@ class Node:
 
 
 def printNode(u):
-    print("node {}:".format(u), end="")
+    print("node {}: ".format(u), end="")
     print("parent = {}, ".format(Nodes[u].parent), end="")
     print("depth = {}, ".format(Depth[u]), end="")
     if Nodes[u].parent == -1:
@@ -40,7 +40,7 @@ def printNode(u):
     elif Nodes[u].left is None:
         print("leaf, ", end="")
     else:
-        print("internal node", end="")
+        print("internal node, ", end="")
     print("[", end="")
     c = Nodes[u].left
     i = 0
@@ -57,11 +57,14 @@ def printNode(u):
 
 
 def rec(u, p):
+    # print(u)
     Depth[u] = p
     if Nodes[u].right is not None:
+        # print('right-hoge')
         rec(Nodes[u].right, p)
     if Nodes[u].left is not None:
-        rec(Nodes[u].right, p)
+        # print("left-hoge")
+        rec(Nodes[u].left, p+1)
 
 
 n = int(input())
@@ -118,7 +121,7 @@ for i in range(n):
 # exit()
 r = -11
 for i in range(n):
-    if Nodes[i].parent is None:
+    if Nodes[i].parent == -1:
         r = i
         break
 if r != -11:
