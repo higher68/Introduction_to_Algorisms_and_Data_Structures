@@ -51,8 +51,8 @@ def printNode(u):
             print(", {}".format(c), end="")
         c = Nodes[c].right
         i += 1
-        if i == 5:
-            exit()
+        # if i == 5:
+        #     exit()
     print("]")
 
 
@@ -92,33 +92,33 @@ for i in range(n):
     # print(q_in)
     dimention = q_in[1]
     # 親の場合分け
-    if q_in[0] == 0:
-        Nodes[q_in[0]].parent = -1
-        if dimention >= 1:
-            Nodes[q_in[0]].left = q_in[2]
-    else:
-        if dimention >= 1:
-            Nodes[q_in[0]].left = q_in[2]
+    if dimention >= 1:
+        Nodes[q_in[0]].left = q_in[2]
+
     # print(Node_number, dimention)
     # 子ノードの処理
-    if dimention > 1:
-        for j in range(0, dimention-1):
-            # print(j, '-'*20)
+    if dimention >= 1:
+        for j in range(0, dimention):
+            # print(j, '-'  x*20)
             # print('hoge', j+2, q_in[j+2], Node_number)
             # print(Node_number)
-            Nodes[q_in[j+2]].right = q_in[j+3]
+            if dimention > 1 and j <= dimention-2:
+                Nodes[q_in[j+2]].right = q_in[j+3]
             # print(type(Nodes[q_in[j+2]].parent))
             # print("Node_number2", Node_number, q_in[j+2])
             # print("Nodes[q_in[j+2]].parent, Nodes[0].parent", Nodes[q_in[j+2]].parent, Nodes[0].parent)
             Nodes[q_in[j+2]].parent = q_in[0]
+            # print("Nodes[q_in[j+2]].parent", q_in[0], q_in[j+2])
             # print("Nodes[0].left, Nodes[0].parent, Nodes[0].right", Nodes[0].left,
             # Nodes[0].parent, Nodes[0].right)
-        Nodes[q_in[j+3]].parent = q_in[0]
     # print("Nodes[0].left, Nodes[0].parent, Nodes[0].right", Nodes[0].left, Nodes[0].parent, Nodes[0].right)
     # exit()
     # print("hoge")
     # exit()
 # exit()
+for i in range(n):
+    if Nodes[i].parent is None:
+        Nodes[i].parent = -1
 r = -11
 for i in range(n):
     if Nodes[i].parent == -1:
@@ -126,6 +126,9 @@ for i in range(n):
         break
 if r != -11:
     rec(r, 0)
-
+# for i in range(n):
+#     print(i, Nodes[i].parent, Depth[i])
+# print(n)
 for i in range(n):
+    # print("i", i)
     printNode(i)
