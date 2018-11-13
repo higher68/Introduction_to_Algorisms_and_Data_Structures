@@ -6,9 +6,33 @@ class Node:
 
 
 def PrintNodes(i):
-    print("node {}: ".formt(i), end="")
-    print("parent = {}, ".formt())
+    print("node {}: ".format(i), end="")
+    print("parent = {}, ".format(Nodes[i].parent))
+    if Nodes[Nodes[i].parent].left == i:
+        if Nodes[Nodes[i].parent].right is not None:
+            print("sibling = {}, ".format(Nodes[Nodes[i].parent].right))
+        else:
+            print("sibling = {}, ".format(-1))
+    elif Nodes[Nodes[i].parent].right == i:
+        if Nodes[Nodes[i].parent].left is not None:
+            print("sibling = {}, ".format(Nodes[Nodes[i].parent].left))
+        else:
+            print("sibling = {}, ".format(-1))
+    deg = 0
+    if Nodes[i].left is not None:
+        deg += 1
+    if Nodes[i].right is not None:
+        deg += 1
+    print("depth = {}, ".format(deg))
+    if Nodes[i].parent == 1:
+        print("root")
     else:
+        if deg != 0:
+            print("internal node")
+        else:
+            print("leaf")
+
+
 
 
 
