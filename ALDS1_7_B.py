@@ -36,6 +36,7 @@ def PrintNodes(i):
 
 
 def rec_depth(i_node, depth):
+    print("i_node, depth", i_node, depth)
     Depth[i_node] = depth
     if Nodes[i_node].left is not None:
         rec_depth(Nodes[i_node].left, depth+1)
@@ -54,7 +55,10 @@ def rec_height(i_node, height):
 n = int(input())
 Depth = [""] * n
 Height = [""] * n
-Nodes = [Node()] * n
+# Nodes = [Node()] * nやっぱこう書くと、 Nodeが全部同じのになるみたい。意味不明
+Nodes = []
+for i in range(n):
+    Nodes.append(Node())
 # input Node-info
 for i in range(n):
     q = [int(_) for _ in input().split()]
@@ -64,14 +68,15 @@ for i in range(n):
     if q[2] != -1:
         Nodes[i].right = q[2]
         Nodes[q[2]].parent = i
-
 root_node = -11
 for i in range(n):
-    if Nodes[i].parent is None:
+    print(i, Nodes[i].parent)
+for i in range(n):
+    if Nodes[i].parent != -1:
         Nodes[i].parent = -1
         root_node = i
         break
-
+# print("hoghoge")
 rec_depth(root_node, 0)
 rec_height(root_node, max(Depth))
 
