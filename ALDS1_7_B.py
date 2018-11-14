@@ -23,7 +23,9 @@ def PrintNodes(i):
         deg += 1
     if Nodes[i].right is not None:
         deg += 1
-    print("depth = {}, ".format(deg))
+    print("degree = {}, ".format(deg))
+    print("depth = {}, ".format(Depth[i]))
+    print("height = {}, ".format(Height[i]))
     if Nodes[i].parent == 1:
         print("root")
     else:
@@ -33,19 +35,25 @@ def PrintNodes(i):
             print("leaf")
 
 
-
-
-
-def recur(i_node, depth):
+def rec_depth(i_node, depth):
     Depth[i_node] = depth
-    if Depth[i_node].left is not None:
-        recur(Depth[i_node].left, depth+1)
-    if Depth[i_node].right is not None:
-        recur(Depth[i_node].right, depth+1)
+    if Nodes[i_node].left is not None:
+        rec_depth(Nodes[i_node].left, depth+1)
+    if Nodes[i_node].right is not None:
+        rec_depth(Nodes[i_node].right, depth+1)
+
+
+def rec_height(i_node, height):
+    Height[i_node] = height
+    if Nodes[i_node].left is not None:
+        rec_height(Nodes[i_node].left, height-1)
+    if Nodes[i_node].right is not None:
+        rec_height(Nodes[i_node].right, height-1)
 
 
 n = int(input())
 Depth = [""] * n
+Height = [""] * n
 Nodes = [Node()] * n
 # input Node-info
 for i in range(n):
@@ -61,7 +69,11 @@ root_node = -11
 for i in range(n):
     if Nodes[i].parent is None:
         Nodes[i].parent = -1
-        rooot_node = i
+        root_node = i
         break
 
-recur(r, 0)
+rec_depth(root_node, 0)
+rec_height(root_node, max(Depth))
+
+for i in range(n):
+    PrintNodes(i)
