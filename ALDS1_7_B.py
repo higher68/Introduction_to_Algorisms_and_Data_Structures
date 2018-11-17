@@ -8,16 +8,19 @@ class Node:
 def PrintNodes(i):
     print("node {}: ".format(i), end="")
     print("parent = {}, ".format(Nodes[i].parent), end="")
-    if Nodes[Nodes[i].parent].left == i:
-        if Nodes[Nodes[i].parent].right != -1:
-            print("sibling = {}, ".format(Nodes[Nodes[i].parent].right), end="")
-        else:
-            print("sibling = {}, ".format(-1), end="")
-    elif Nodes[Nodes[i].parent].right == i:
-        if Nodes[Nodes[i].parent].left != -1:
-            print("sibling = {}, ".format(Nodes[Nodes[i].parent].left), end="")
-        else:
-            print("sibling = {}, ".format(-1), end="")
+    if Nodes[i].parent == -1:
+        print("sibling = {}, ".format(-1), end="")
+    else:
+        if Nodes[Nodes[i].parent].left == i:
+            if Nodes[Nodes[i].parent].right != -1:
+                print("sibling = {}, ".format(Nodes[Nodes[i].parent].right), end="")
+            else:
+                print("sibling = {}, ".format(-1), end="")
+        elif Nodes[Nodes[i].parent].right == i:
+            if Nodes[Nodes[i].parent].left != -1:
+                print("sibling = {}, ".format(Nodes[Nodes[i].parent].left), end="")
+            else:
+                print("sibling = {}, ".format(-1), end="")
     deg = 0
     if Nodes[i].left != -1:
         deg += 1
@@ -26,7 +29,7 @@ def PrintNodes(i):
     print("degree = {}, ".format(deg), end="")
     print("depth = {}, ".format(Depth[i]), end="")
     print("height = {}, ".format(Height[i]), end="")
-    if Nodes[i].parent == 1:
+    if Nodes[i].parent == -1:
         print("root")
     else:
         if deg != 0:
@@ -36,7 +39,7 @@ def PrintNodes(i):
 
 
 def rec_depth(i_node, depth):
-    # print("i_node, depth", i_node, depth, end="")
+    # print("i_node, depth", i_node, depth)
     Depth[i_node] = depth
     if Nodes[i_node].left != -1:
         rec_depth(Nodes[i_node].left, depth+1)
@@ -44,12 +47,21 @@ def rec_depth(i_node, depth):
         rec_depth(Nodes[i_node].right, depth+1)
 
 
-def rec_height(i_node, height):
-    Height[i_node] = height
+def rec_height(i_node):
+    # print("i_node, height", i_node, height)
+    # Height[i_node] = height
+    # if Nodes[i_node].left != -1:
+    #     rec_height(Nodes[i_node].left, height-1)
+    # if Nodes[i_node].right != -1:
+    #     rec_height(Nodes[i_node].right, height-1)
+    h1 = 0
+    h2 = 0
     if Nodes[i_node].left != -1:
-        rec_height(Nodes[i_node].left, height-1)
+        h1 = rec_height(Nodes[i_node].left) + 1
     if Nodes[i_node].right != -1:
-        rec_height(Nodes[i_node].right, height-1)
+        h2 = rec_height(Nodes[i_node].right) + 1
+    Height[i_node] = max(h1, h2)
+    return Height[i_node]
 
 
 n = int(input())
@@ -77,7 +89,7 @@ for i in range(n):
         break
 # print("hoghoge")
 rec_depth(root_node, 0)
-rec_height(root_node, max(Depth))
+rec_height(root_node)
 
 for i in range(n):
     PrintNodes(i)
