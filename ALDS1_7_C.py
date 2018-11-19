@@ -57,8 +57,10 @@ for i in range(n):
 
 print("Preorder")
 preParse(root)
-print("\nInorder")
+print("")
+print("Inorder")
 inParse(root)
-print("\nPostorder")
+print("")
+print("Postorder")
 postParse(root)
-print("\n")
+print("")
