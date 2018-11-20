@@ -8,11 +8,23 @@ class Node:
 def insert():
 
 
-def inorder(node_k):
-    if
+def inorder(u):
+    """中間順巡回"""
+    if u == -1:
+        return
+    inorder(Nodes[u].left)
+    print(" {}".format(u), end="")
+    inorder(Nodes[u].right)
 
 
-def preorder():
+def preorder(u):
+    """後行順巡回"""
+    if u == -1:
+        return
+    preorder(Nodes[u].left)
+    preorder(Nodes[u].right)
+    print(" {}".format(u), end="")
+
 
 
 
