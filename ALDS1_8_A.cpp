@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <cstdio>    // 入出力ライブラリ
 #include <cstdlib>   // いろんなユーティリティ提供
 #include <iostream>  // 入出力ライブラリ
@@ -7,8 +8,8 @@ using namespace std;  // 名前空間の面倒な修飾を省略できるstd::co
 
 struct Node {
   int key;  // int型のkey
-  Node *right *left *parent;
-#Node型へのポインタをright, left, parentは持つことができるという宣言
+  Node *right, *left, *parent;
+  // Node型へのポインタをright, left, parentは持つことができるという宣言
 }
 
 Node *root,
@@ -60,4 +61,25 @@ void preorder(Node *u) {
   printf(" %d", u->key) i;
   prorder(u->left);
   prorder(u->right);
+  
+int main() {
+  int n, i, x;
+  string com;
+
+  scanf("%d", &n);
+
+  for (i = 0; i < n; i++) {
+    cin >> com;  // stdio::cinは >>として、その先のstdinからの入力を入れれる
+    if (com == "insert"){
+      scanf("%d", &x);  // dだと10進数でxのアドレスに入力
+      insert(x);
+    } else if (com == "print" ) {
+      inorder(root);
+      printf("\n");
+      preorder(root);
+      printf("\n");
+    }
+  }
+  
+  return 0;  // 0を返すと正常終了。それ以外だと異常。
 }
