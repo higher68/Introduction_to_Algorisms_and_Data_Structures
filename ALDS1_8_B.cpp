@@ -73,7 +73,29 @@ int main() {
   string com;
 
   scanf("%d", &n);
-   
+
+  for (i = 0; i < n; i++) {
+   cin >> com;
+   if (com[0] == "f" {
+       scan("%d", &x);
+       Node *t = finc(root, x);
+       if (t != NIL) printf("yes\n");
+       else printf("no\n");
+   } else if (com == "insert") {
+       scanf("%d", &x);
+       insert(x);
+   } else if (com == "print") {
+       inorder(root);
+       printf("\n");
+       preorder(root);
+       printf("\n");
+   }
+  }
+  return 0;
+}  
+
+
+
 
     
 
