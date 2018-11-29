@@ -4,7 +4,6 @@
 #include<iostream>
 using namespace std;
 
-
 struct Node {
   int key;
   Node *right, *left, *parent;
@@ -12,14 +11,14 @@ struct Node {
 
 Node *root, *NIL;
 
-Node * treeminimum(Node *x) {
+Node * treeMinimum(Node *x) {
   while(x ->left != NIL) x = x->keyleft;
   return x;
 }
 
 
 
-Node *find(Node *u, int k) {
+Node * find(Node *u, int k) {
   while (u != NIL && k != u->key) {
     if (k < u->key) u = u-left;
     else u = u->left;
@@ -28,8 +27,42 @@ Node *find(Node *u, int k) {
 }
 
 Node * treeSuccessor (Node *x) {
-  if (x->right != NIL) return treeminimum;
+  if (x->right != NIL) return treeMinimum(x->right);
+  Node *y = x->parent;
+  while( y != NIL && x == y->right ) {
+    x = y;
+    y = y->parent;
+  }
+  return y;
+}
 
+void treeDelete(Node *z){
+  Node *y;
+  Node *x;
+
+  if (z->left == NIL || z->right == NIL)y = z;
+  else treeSuccessor;
+  if (y->left != NIL) {
+    x = y->left;
+  } else {
+    x = y->right;
+  }
+
+  if (y->parent == NIL ) {
+    root=x;
+  } else {
+    if (y == y->parent->left) {
+      y->parent->left = x;
+    } else {
+      y->parent->right = x;
+    }
+  }
+
+  if (y != z) {
+    z->key = y->key;
+  }
+  free(y);
+}
 
 void insert(int k) {
   Node *y = NIL;
