@@ -2,7 +2,7 @@
 #include <cstdio>    // 入出力ライブラリ
 #include <cstdlib>   // いろんなユーティリティ提供
 #include <iostream>  // 入出力ライブラリ
-#include <string>    // 文字列ライブラリ
+#include <string>    // 文字列ライブラリ  
 using namespace std;  // 名前空間の面倒な修飾を省略できるstd::count
                       // がcountにここだと、Nodeの定義時に、structを書く必要がなくなる
 
