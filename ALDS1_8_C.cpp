@@ -129,5 +129,11 @@ int main() {
       inorder(root);
       printf("\n");
       preorder(root);
+      ptintf("\n");
+    } else if (com == "delete"){
+      scanf("%d", &x);
+      treeDelete(find(root, x));
+    }
+  }
 
 
