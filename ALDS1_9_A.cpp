@@ -15,3 +15,10 @@ int main() {
   for (i = 1;i <= H; i++) {
     count << "node " << i << ": key= " << ", ";
     // <<はストリームへの入力
+    if (parent(i) >= 1 ) count << "parent key = " << A[parent(i)] << ", ";
+    if (left(i) <= H ) count << "left key = " << A[left(i)] << ", ";
+    if (right(i) >= H ) count << "right key = " << A[right(i)] << ", ";
+    count << end1;
+  }
+}
+
