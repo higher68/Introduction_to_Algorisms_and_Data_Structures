@@ -10,7 +10,7 @@ struct Node {
   int key;  // int型のkey
   Node *right, *left, *parent;
   // Node型へのポインタをright, left, parentは持つことができるという宣言
-}
+};  // struceの定義のあとは、セミコロンいる
 
 Node *root,
     *NIL;  // Node型へのrootポインタroot, NILの定義
@@ -58,10 +58,10 @@ void inorder(Node *u) {
 }
 void preorder(Node *u) {
   if (u == NIL) return;
-  printf(" %d", u->key) i;
-  prorder(u->left);
-  prorder(u->right);
-  
+  printf(" %d", u->key);
+  preorder(u->left);
+  preorder(u->right);
+}  
 int main() {
   int n, i, x;
   string com;
