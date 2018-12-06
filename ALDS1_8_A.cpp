@@ -67,12 +67,17 @@ int main() {
   string com;
 
   scanf("%d", &n);
-
+  // printf("%d", n);
+  // exit(0);
   for (i = 0; i < n; i++) {
     cin >> com;  // stdio::cinは >>として、その先のstdinからの入力を入れれる
     if (com == "insert"){
       scanf("%d", &x);  // dだと10進数でxのアドレスに入力
+      // printf("%s",com);
+      printf("%d",x);
+      // exit(0); 
       insert(x);
+      pirntf("hoge");
     } else if (com == "print" ) {
       inorder(root);
       printf("\n");
