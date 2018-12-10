@@ -7,12 +7,12 @@ using namespace std;
 struct Node {
   int key;
   Node *right, *left, *parent;
-}
+};
 
 Node *root, *NIL;
 
 Node * treeMinimum(Node *x) {
-  while(x ->left != NIL) x = x->keyleft;
+  while(x ->left != NIL) x = x->left;
   return x;
 }
 
@@ -20,8 +20,8 @@ Node * treeMinimum(Node *x) {
 
 Node * find(Node *u, int k) {
   while (u != NIL && k != u->key) {
-    if (k < u->key) u = u-left;
-    else u = u->left;
+    if (k < u->key) u = u->left;
+    else u = u->right;
   }
   return u;
 }
@@ -41,7 +41,7 @@ void treeDelete(Node *z){
   Node *x;
 
   if (z->left == NIL || z->right == NIL)y = z;
-  else treeSuccessor;
+  else y = treeSuccessor(z);
   if (y->left != NIL) {
     x = y->left;
   } else {
@@ -91,6 +91,7 @@ void insert(int k) {
   // yに子の情報を入れる処理
   if (y == NIL) {
     root = z;
+  } else {
     if (z->key < y->key) {
       y->left = z;
     } else {
@@ -107,9 +108,9 @@ void inorder(Node *u) {
 }
 void preorder(Node *u) {
   if (u == NIL) return;
-  printf(" %d", u->key) i;
-  prorder(u->left);
-  prorder(u->right);
+  printf(" %d", u->key);
+  preorder(u->left);
+  preorder(u->right);
 }
 
 
@@ -125,15 +126,18 @@ int main() {
       Node *t = find(root, x);
       if (t != NIL)printf("yes\n");
       else printf("no\n");
+    } else if (com == "insert") {
+      scanf("%d", &x);
+      insert(x);
     } else if (com == "print") {
       inorder(root);
       printf("\n");
       preorder(root);
-      ptintf("\n");
+      printf("\n");
     } else if (com == "delete"){
       scanf("%d", &x);
       treeDelete(find(root, x));
     }
   }
-
+}
 
