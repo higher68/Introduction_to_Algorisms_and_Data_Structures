@@ -8,14 +8,14 @@ using namespace std;
 struct Node {
   int key;
   Node *right, *left, *parent;
-}
+};
 
 Node *root, *NIL;
 
 Node *find(Node *u, int k) {
   while (u != NIL && k != u->key) {
-    if (k < u->key) u = u-left;
-    else u = u->left;
+    if (k < u->key) u = u->left;
+    else u = u->right;
   }
   return u;
 }
@@ -25,8 +25,7 @@ void insert(int k) {
   Node *x = root;
   Node *z;
 
-  z = (Node *)malloc(sizeof(
-      Node));  // pointerに対してのメモリの動的な割り当て。zポインタからNodeのポインタへ渡してるっぽい.二重割り当てか?
+  z = (Node *)malloc(sizeof(Node));  // pointerに対してのメモリの動的な割り当て。zポインタからNodeのポインタへ渡してるっぽい.二重割り当てか?
   // 確保したメモリをNode型ポインタへキャスト。構造体のsizeofは構造体メンバのバイト数
   z->key = k;  // zオブジェクトのポインタに対して参照
   // zはNode型へのポインタ型変数。あるノードへのアドレスが入る
@@ -47,6 +46,7 @@ void insert(int k) {
   // yに子の情報を入れる処理
   if (y == NIL) {
     root = z;
+  } else {
     if (z->key < y->key) {
       y->left = z;
     } else {
@@ -63,9 +63,9 @@ void inorder(Node *u) {
 }
 void preorder(Node *u) {
   if (u == NIL) return;
-  printf(" %d", u->key) i;
-  prorder(u->left);
-  prorder(u->right);
+  printf(" %d", u->key);
+  preorder(u->left);
+  preorder(u->right);
 }
 
 int main() {
@@ -76,9 +76,9 @@ int main() {
 
   for (i = 0; i < n; i++) {
    cin >> com;
-   if (com[0] == "f" {
-       scan("%d", &x);
-       Node *t = finc(root, x);
+   if (com[0] == 'f') {
+       scanf("%d", &x);
+       Node *t = find(root, x);
        if (t != NIL) printf("yes\n");
        else printf("no\n");
    } else if (com == "insert") {
@@ -93,10 +93,3 @@ int main() {
   }
   return 0;
 }  
-
-
-
-
-    
-
-
