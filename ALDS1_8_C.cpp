@@ -54,6 +54,10 @@ void treeDelete(Node *z){
     // yに左の子供がいない時。右もいなかったら、NILになる。
     x = y->right;
   }
+  // yに子供がいる時、yの親とxを繋ぐ
+  if (x != NIL){
+    x->parent = y->parent;
+  }
   // yの親を決める
   if (y->parent == NIL ) {
     // 削除対象に親がいない時、削除したノードの子がrootになる
@@ -112,6 +116,11 @@ void insert(int k) {
       y->right = z;
     }
   }
+  // 削除対象が、入れたものでない時、つまり、zに子供が存在する時
+  if (y != z) {
+   z->key = y->key;
+  }
+ free(y); 
 }
 
 void inorder(Node *u) {
