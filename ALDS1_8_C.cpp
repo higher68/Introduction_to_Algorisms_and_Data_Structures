@@ -37,30 +37,44 @@ Node * treeSuccessor (Node *x) {
 }
 
 void treeDelete(Node *z){
-  Node *y;
-  Node *x;
-
+  Node *y;  // 削除する対象
+  Node *x;  // yの子
+  // zは削除したいノード
+  
+  // 削除する節点を決める
+  // zの子が一個以下のときzを削除。zに子がいない時はzを削除、子が1つでもそう 
   if (z->left == NIL || z->right == NIL)y = z;
+  // zの子が二つの時は、zの次節点yのキーをzにコピー。yを消す
   else y = treeSuccessor(z);
+  // yの子xを決める
+  // yに左の子供がいる時
   if (y->left != NIL) {
     x = y->left;
   } else {
+    // yに左の子供がいない時。右もいなかったら、NILになる。
     x = y->right;
   }
-
+  // yの親を決める
   if (y->parent == NIL ) {
+    // 削除対象に親がいない時、削除したノードの子がrootになる
     root=x;
   } else {
+    // 削除対象に親がいる時
+    // 削除するノードが親の左の子のとき
     if (y == y->parent->left) {
+      // 削除するノードの子を削除したノードの親の左の子供とする
       y->parent->left = x;
     } else {
+      //　削除するノードが親の右の子のとき＼
       y->parent->right = x;
     }
   }
-
+  // 削除したノードが、削除しようとしたノード出なかった時、つまり、削除しようとしたノードの左右に子供がいた時
   if (y != z) {
+    // 削除したノードのキーをzのキーに
     z->key = y->key;
   }
+  // 最後にyを削除
   free(y);
 }
 
