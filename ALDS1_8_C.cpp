@@ -87,8 +87,8 @@ void insert(int k) {
   Node *x = root;
   Node *z;
 
-  z = (Node *)malloc(sizeof(
-      Node));  // pointerに対してのメモリの動的な割り当て。zポインタからNodeのポインタへ渡してるっぽい.二重割り当てか?
+  z = (Node *)malloc(sizeof(Node));
+  // pointerに対してのメモリの動的な割り当て。zポインタからNodeのポインタへ渡してるっぽい.二重割り当てか?
   // 確保したメモリをNode型ポインタへキャスト。構造体のsizeofは構造体メンバのバイト数
   z->key = k;  // zオブジェクトのポインタに対して参照
   // zはNode型へのポインタ型変数。あるノードへのアドレスが入る
@@ -116,11 +116,6 @@ void insert(int k) {
       y->right = z;
     }
   }
-  // 削除対象が、入れたものでない時、つまり、zに子供が存在する時
-  if (y != z) {
-   z->key = y->key;
-  }
- free(y); 
 }
 
 void inorder(Node *u) {
