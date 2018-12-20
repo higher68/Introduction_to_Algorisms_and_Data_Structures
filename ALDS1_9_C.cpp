@@ -12,12 +12,15 @@ void maxHeapify(int i) {
   r = 2 * i + 1;
 
   // 左の子、自分、右の子で値が最大のノードを選ぶ
-  if (l <= H && A[r] > A[largest] ) largest = r;
+  // まずは左に関して、自分=iより大きいか判定
+  if (l <= H && A[l] > A[i] ) largest = l;
   else largest = i;
-  if (r <= H && A[largest]) larest = r;
-
+  // 右に関して、一番大きいやつより大きいか判定
+  if (r <= H && A[r] > A[largest]) largest = r;
+  // 一番大きいのが自分でない時
   if (largest != i) {
-        swqp(A[i], A[largest]);
+    // swapは配列とかベクトルに格納されている値の交換
+        swap(A[i], A[largest]);
         maxHeapify(largest);
   }
 }
@@ -43,7 +46,7 @@ void increaseKey(int i, int key){
 void insert(int key){
   H++;
   A[H] = -INFTY;
-  increaseKey;
+  increaseKey(H, key);
 }
 
 int main(){
@@ -51,13 +54,13 @@ int main(){
   char com[10];
 
   while (1) {
-    scanf("%s" com);
-    if (com[0] == "e" && com[1] =="n") break;
-    if (com[0] == "i"){
-      scanf("%d", &key);
+    scanf('%s' com);
+    if (com[0] == 'e' && com[1] =='n') break;
+    if (com[0] == 'i'){
+      scanf('%d', &key);
       insert(key);
     }else {
-      printf("%d\n", extract());
+      printf('%d\n', extract());
     }
   }
   return 0;
