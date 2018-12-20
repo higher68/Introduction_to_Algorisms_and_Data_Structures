@@ -13,8 +13,8 @@ void maxHeapify(int i) {
   // まずは左に関して、自分=iより大きいか判定
   if (l <= H && A[l] > A[i] ) largest = l;
   else largest = i;
-  // 右に関して、自分=iより大きいか判定
-  if (r <= H && A[i] > A[largest]) largest = r;
+  // 右に関して、一番大きいやつより大きいか判定
+  if (r <= H && A[r] > A[largest]) largest = r;
   // 一番大きいのが自分でない時
   if (largest != i) {
     // swapは配列とかベクトルに格納されている値の交換
