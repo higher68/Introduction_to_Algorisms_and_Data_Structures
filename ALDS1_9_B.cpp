@@ -10,12 +10,15 @@ void maxHeapify(int i) {
   r = 2 * i + 1;
 
   // 左の子、自分、右の子で値が最大のノードを選ぶ
-  if (l <= H && A[r] > A[largest] ) largest = r;
+  // まずは左に関して、自分=iより大きいか判定
+  if (l <= H && A[l] > A[i] ) largest = l;
   else largest = i;
-  if (r <= H && A[largest]) larest = r;
-
+  // 右に関して、自分=iより大きいか判定
+  if (r <= H && A[i] > A[largest]) largest = r;
+  // 一番大きいのが自分でない時
   if (largest != i) {
-        swqp(A[i], A[largest]);
+    // swapは配列とかベクトルに格納されている値の交換
+        swap(A[i], A[largest]);
         maxHeapify(largest);
   }
 }
@@ -23,14 +26,14 @@ void maxHeapify(int i) {
 int main() {
   cin >> H;
   
-  for (int i = 1;i <= H: i++) cin >>A[i];
+  for (int i = 1;i <= H; i++) cin >> A[i];
 
   for (int i = H / 2; i >= 1; i--) maxHeapify(i);
 
   for (int i = 1; i <= H; i++) {
-    count << " " << A[i]
+    cout << " " << A[i];
   }
-  count << endl;
+  cout << endl;
 
   return 0;
 }
