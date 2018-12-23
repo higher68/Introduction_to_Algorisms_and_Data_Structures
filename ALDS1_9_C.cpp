@@ -54,13 +54,13 @@ int main(){
   char com[10];
 
   while (1) {
-    scanf('%s' com);
+    scanf("%s", com);
     if (com[0] == 'e' && com[1] =='n') break;
     if (com[0] == 'i'){
-      scanf('%d', &key);
+      scanf("%d", &key);
       insert(key);
     }else {
-      printf('%d\n', extract());
+      printf("%d\n", extract());
     }
   }
   return 0;
