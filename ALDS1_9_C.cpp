@@ -27,17 +27,23 @@ void maxHeapify(int i) {
 
 int extract() {
   int maxv;
+  // heap要素の最大の要素を取得・削除
   if (H < 1) return -INFTY;
   maxv = A[1];
+  // heapの最大値は根の値
+  // 根に一番小さい値を入れる。すると、maxHeapifyをした時に、一番大きいのが上にくるよ
   A[1] = A[H--];
   maxHeapify(1);
+  // 記録しておいたmaxを返す
   return maxv;
 }
 
 void increaseKey(int i, int key){
+  // 優先度付きキューを表すヒープ要素のキーの変更・・・大きいものを正しい位置に置く。
   if (key < A[i]) return;
   A[i] = key;
   while(i > 1 && A[i / 2] < A[i]) {
+    // キーが正しい位置に置かれるまで、入れ替え続ける
     swap(A[i], A[i / 2]);
     i = i / 2;
   }
