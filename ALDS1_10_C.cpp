@@ -5,6 +5,8 @@ using namespace std;
 static const int N = 1000;
 
 int lcs(string X, string Y){
+  // 任意のX, Yについて、c[i][0]とc[0][j]を求める。それを使って、c[i][j]を漸化式から求めていく。
+  // 最大値は逐一記録
   int c[N+1][N+1];
   int m = X.size();
   int n = Y.size();
