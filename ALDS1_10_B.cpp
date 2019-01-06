@@ -2,7 +2,7 @@
 #include<algorithm>
 using namespace std;
 
-static cost in N = 100;
+static const int N = 100;
 
 int main() {
   int n, p[N+1], m[N+1][N+1];
@@ -21,12 +21,13 @@ int main() {
       // 1 の 21bit左シフト。要するにinfty
       m[i][j] = (1 << 21);
       for (int k = i; k <= j - 1; k++) {
+        // 増分を足した数と現状の最小値を比較
         m[i][j] = min(m[i][j], m[i][k] + m[k+1][j] + p[i - 1] * p[k] * p[j]);
       }
     }
   }
 
-  cout << m[1][n] << encl;
+  cout << m[1][n] << endl;
 
   return 0;
 }
