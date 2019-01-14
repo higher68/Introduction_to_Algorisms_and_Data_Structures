@@ -38,8 +38,34 @@ void dfs_visit(int r) {
         S.push(v);
       }
     } else {
+      S.pop();
+      color[u] = BLACK;
+      f[u] = ++tt;
+
     }
-
-
  }
+}
+
+
+void dfs() {
+  // 初期化
+  for (int i = 0; i < n; i++) {
+    color[i] = WHITE;
+    nt[i] = 0;
+  }
+  tt = 0;
+
+  // 未訪問のuを始点として深さ優先探索
+  for (int u = 0; u < n; u++ ) {
+    if ( color[u] == WHITE ) dfs_visit(u);
+  }
+  for (int i = 0; i < n; i++) {
+    cout << i+1 << " " << d[i] << " " << f[i] << endl;
+  }
+}
+
+
+int main() { 
+  int u, k, v;
+  cin >> n;
 
