@@ -3,7 +3,7 @@
 #include<stack>
 using namespace std;
 static const int MAX = 100000;
-static const int NIL = -1;
+static const int NIL = -1; // NILの定義は、未探索？
 
 int n;
 vector<int> G[MAX];
@@ -29,6 +29,7 @@ void dfs(int r, int c) {
 void assignColor() {
   int id = 1;
   for (int i = 0; i < n; i++ ) color[i] = NIL;
+  /// 各頂点からの探索ごとに異なる色をふる.色が同じなら同じグループ
   for (int u = 0; u < n; u++ ) {
     if (color[u] == NIL ) dfs(u, id++);
   }
@@ -40,8 +41,10 @@ int main() {
 
   cin >> n >> m;
 
+  // 入力データにしたがって辺を張る
   for (int i = 0; i < m; i++) {
     cin >> s >> t;
+    // sからt、tからsに辺を張る
     G[s].push_back(t);
     G[t].push_back(s);
   }
