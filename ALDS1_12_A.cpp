@@ -12,6 +12,12 @@ int prim() {
   int u, minv;
   int d[MAX], p[MAX], color[MAX];
 
+  // d[v]：Tに属する頂点とV-Tに属する頂点を繋ぐ辺で、重みが最小の辺の重みを格納
+  // p[v]：MSTにおける頂点vの親を記録
+  // color[v]：vの訪問状態を記録。whiteはまだ、grayはそこにいる。blackは訪問済み
+  // M[u][v]：uからvへの辺の重みを記録した隣接行列
+
+  // 重みの初期値(最小を求めるのでinf, 頂点の親の初期値, colorの初期値設定)
   for ( int i = 0; i < n; i++) {
     d[i] = INFTY;
     p[i] = -1;
