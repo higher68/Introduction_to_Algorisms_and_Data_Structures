@@ -1,14 +1,16 @@
 class Node:
-    def __init__(self, parent=-1, left=-1, right=-1):
+    def __init__(self, key=-1, parent=-1, left=-1, right=-1):
+        self.key = key
         self.parent = parent
         self.left = left
         self.right = right
 
 
-def insert():
+def insert(k):
 
 
-def inorder(u):
+
+def inorder():
     """中間順巡回"""
     if u == -1:
         return
